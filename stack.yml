@@ -15,3 +15,8 @@ functions:
       twilio_check_verify_endpoint: https://verify.twilio.com/v2/Services/<YOUR_VERIFY_SERVICE_ID>/VerificationCheck
       twilio_account_sid_path: /var/openfaas/secrets/twilio-account-sid
       twilio_auth_token_path: /var/openfaas/secrets/twilio-auth-token
+    hooks:
+      # assumes a tox.ini also ships with my function
+      pre_build: tox -l == 0 && tox      
+      # unit testing w/o tox
+      pre_build: pytest
